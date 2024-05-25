@@ -1,3 +1,22 @@
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {
+    'help',
+    'alpha',
+    'dashboard',
+    'neo-tree',
+    'Trouble',
+    'trouble',
+    'lazy',
+    'mason',
+    'notify',
+    'toggleterm',
+    'lazyterm',
+  },
+  callback = function()
+    vim.b.miniindentscope_disable = true
+  end,
+})
+
 return {
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -32,6 +51,9 @@ return {
         return '%2l:%-2v'
       end
 
+      require('mini.pairs').setup()
+
+      require('mini.indentscope').setup()
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
