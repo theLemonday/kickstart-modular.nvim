@@ -22,6 +22,7 @@ return {
                 null_ls.builtins.diagnostics.buf,
                 null_ls.builtins.formatting.buf,
                 null_ls.builtins.formatting.shfmt,
+                null_ls.builtins.formatting.nixpkgs_fmt,
             },
         }
     end,

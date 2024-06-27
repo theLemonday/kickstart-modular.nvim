@@ -33,6 +33,13 @@ return {
                 terraform = { "terraform_fmt" },
                 tf = { "terraform_fmt" },
                 ["terraform-vars"] = { "terraform_fmt" },
+                python = {
+                    -- To fix lint errors.
+                    "ruff_fix",
+                    -- To run the Ruff formatter.
+                    "ruff_format",
+                },
+                nix = { "nixfmt" },
                 -- Conform can also run multiple formatters sequentially
                 -- python = { "isort", "black" },
                 --

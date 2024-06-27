@@ -29,6 +29,7 @@ return {
                 "xml",
                 "yaml",
                 "css",
+                "nix",
             },
             -- Autoinstall languages that are not installed
             auto_install = true,

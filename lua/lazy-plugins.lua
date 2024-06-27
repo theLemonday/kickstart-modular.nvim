@@ -23,7 +23,20 @@ require("lazy").setup({
     --    require('Comment').setup({})
 
     -- "gc" to comment visual regions/lines
-    { "numToStr/Comment.nvim", opts = {} },
+    {
+        "numToStr/Comment.nvim",
+        dependencies = {
+            "JoosepAlviste/nvim-ts-context-commentstring",
+            opts = { enable_autocmd = false },
+        },
+        opts = function()
+            return {
+                pre_hook = require(
+                    "ts_context_commentstring.integrations.comment_nvim"
+                ).create_pre_hook(),
+            }
+        end,
+    },
 
     -- modular approach: using `require 'path/name'` will
     -- include a plugin definition from file lua/path/name.lua
