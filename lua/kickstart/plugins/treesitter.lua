@@ -5,6 +5,7 @@ return {
         event = { "VeryLazy" },
         opts = {
             ensure_installed = {
+                "http",
                 "svelte",
                 "just",
                 "bash",

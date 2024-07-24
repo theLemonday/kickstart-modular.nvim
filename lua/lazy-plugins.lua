@@ -23,18 +23,32 @@ require("lazy").setup({
     --    require('Comment').setup({})
 
     -- "gc" to comment visual regions/lines
+    -- {
+    --     "numToStr/Comment.nvim",
+    --     dependencies = {
+    --         "JoosepAlviste/nvim-ts-context-commentstring",
+    --         opts = { enable_autocmd = false },
+    --     },
+    --     opts = function()
+    --         return {
+    --             pre_hook = require(
+    --                 "ts_context_commentstring.integrations.comment_nvim"
+    --             ).create_pre_hook(),
+    --         }
+    --     end,
+    -- },
     {
-        "numToStr/Comment.nvim",
-        dependencies = {
-            "JoosepAlviste/nvim-ts-context-commentstring",
-            opts = { enable_autocmd = false },
-        },
+        "JoosepAlviste/nvim-ts-context-commentstring",
         opts = function()
-            return {
-                pre_hook = require(
-                    "ts_context_commentstring.integrations.comment_nvim"
-                ).create_pre_hook(),
+            require("ts_context_commentstring").setup {
+                enable_autocmd = false,
             }
+            local get_option = vim.filetype.get_option
+            get_option = function(filetype, option)
+                return option == "commentstring"
+                        and require("ts_context_commentstring.internal").calculate_commentstring()
+                    or get_option(filetype, option)
+            end
         end,
     },
 
@@ -61,10 +75,11 @@ require("lazy").setup({
 
     require "kickstart/plugins/treesitter",
 
+    require "kickstart/plugins/lint",
+
     -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
     -- init.lua. If you want these files, they are in the repository, so you can just download them and
     -- place them in the correct locations.
-
     -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
     --
     --  Here are some example plugins that I've included in the Kickstart repository.
@@ -73,7 +88,6 @@ require("lazy").setup({
     -- require 'kickstart.plugins.debug',
     -- require 'kickstart.plugins.indent_line',
     -- require 'kickstart.plugins.lint',
-
     -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
     --    This is the easiest way to modularize your config.
     --

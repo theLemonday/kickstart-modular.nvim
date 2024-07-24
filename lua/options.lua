@@ -84,3 +84,9 @@ vim.g.loaded_node_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 -- vim: ts=2 sts=2 sw=2 et
+
+vim.filetype.add {
+    extension = {
+        ["http"] = "http",
+    },
+}

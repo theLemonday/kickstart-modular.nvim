@@ -34,18 +34,35 @@ return {
                 tf = { "terraform_fmt" },
                 ["terraform-vars"] = { "terraform_fmt" },
                 python = {
+                    "ruff_organize_imports",
                     -- To fix lint errors.
                     "ruff_fix",
                     -- To run the Ruff formatter.
                     "ruff_format",
                 },
-                nix = { "nixfmt" },
+                nix = { "nixpkgs_fmt" },
+                buf = { "buf" },
+                javascript = { "prettierd" },
+                typescript = { "prettierd" },
+                sql = { "sql-formatter" },
+                bash = { "shfmt" },
+                yaml = { "yamlfix" },
+                graphql = { "prettierd" },
+                css = { "prettierd" },
+
                 -- Conform can also run multiple formatters sequentially
                 -- python = { "isort", "black" },
                 --
                 -- You can use a sub-list to tell conform to run *until* a formatter
                 -- is found.
                 -- javascript = { { "prettierd", "prettier" } },
+            },
+            formatters = {
+                yamlfix = {
+                    env = {
+                        YAMLFIX_WHITELINES = 1,
+                    },
+                },
             },
         },
     },

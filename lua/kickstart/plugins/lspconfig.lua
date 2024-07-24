@@ -1,3 +1,5 @@
+local ansiblels = {}
+
 return {
     { -- LSP Configuration & Plugins
         "neovim/nvim-lspconfig",
@@ -194,6 +196,7 @@ return {
                 --
                 -- But for many setups, the LSP (`tsserver`) will work just fine
 
+                ansiblels = ansiblels,
                 tsserver = {},
                 jsonls = {
                     settings = {
@@ -287,6 +290,7 @@ return {
                 buf = {},
                 tailwindcss = {},
                 nil_ls = {},
+                emmet_language_server = {},
                 gopls = {
                     settings = {
                         gopls = {
@@ -346,6 +350,8 @@ return {
             local ensure_installed = vim.tbl_keys(servers or {})
             vim.list_extend(ensure_installed, {
                 "ansiblels",
+                "ansible-lint",
+
                 "gofumpt",
                 "goimports",
                 "stylua", -- Used to format Lua code
@@ -358,11 +364,15 @@ return {
                 "nixpkgs-fmt",
                 "tailwindcss-language-server",
                 "buf",
-                -- "pyright",
-                "ruff",
                 "shfmt",
                 "python-lsp-server",
+                "ruff",
                 "nil",
+                "shellcheck",
+                "typos",
+                "yamlfix",
+                "emmet_language_server",
+                "markdownlint",
             })
             require("mason-tool-installer").setup {
                 ensure_installed = ensure_installed,
